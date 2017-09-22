@@ -1,5 +1,6 @@
 package com.example.swordsman.coolweather.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.example.swordsman.coolweather.R;
 import com.example.swordsman.coolweather.gson.Forecast;
 import com.example.swordsman.coolweather.gson.Weather;
+import com.example.swordsman.coolweather.service.AutoUpdateService;
 import com.example.swordsman.coolweather.util.HttpUtil;
 import com.example.swordsman.coolweather.util.Utility;
 
@@ -206,6 +208,8 @@ public void requestWeather(final  String weatherId) {
                                     getDefaultSharedPreferences(WeatherActivity.this)
                                     .edit();
                             editor.putString("weather",responseText);
+                            Intent intent=new Intent(WeatherActivity.this, AutoUpdateService.class);
+                            startService(intent);
                             showWeatherInfo(weather);
                         }else {
                             Toast.makeText(WeatherActivity.this,"获取天气失败",Toast.LENGTH_SHORT).show();;
