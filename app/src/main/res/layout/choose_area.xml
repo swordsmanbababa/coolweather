@@ -15,9 +15,11 @@
             android:textColor="#fff"
             android:textSize="20sp"/>
         <Button
+            android:background="#00000000"
             android:id="@+id/back_button"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back"
             android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"/>
 
