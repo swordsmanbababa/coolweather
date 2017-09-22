@@ -6,6 +6,8 @@ import android.util.Log;
 import com.example.swordsman.coolweather.db.City;
 import com.example.swordsman.coolweather.db.County;
 import com.example.swordsman.coolweather.db.Province;
+import com.example.swordsman.coolweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +18,20 @@ import org.json.JSONObject;
  */
 
 public class Utility {
+    public static Weather handleWeatherResonse(String response){
+
+        try {
+            Log.i("weatherResponse",response);
+            JSONObject jsonObject=new JSONObject(response);
+            JSONArray jsonArray=jsonObject.getJSONArray("HeWeather");
+            String  weatherContent=jsonArray.getJSONObject(0).toString();
+            Log.i("weatherContent",weatherContent);
+            return   new Gson().fromJson(weatherContent,Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public static boolean handleProvinceResponse(String response){
         if(!TextUtils.isEmpty(response)){
             try {
